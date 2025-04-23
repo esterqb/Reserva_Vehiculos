@@ -1,10 +1,12 @@
 package Reserva_Vehiculos;
 
 
+import java.util.Scanner;
+
 public class Vehiculo_Accesorio {
     private Vehiculo vehiculo;
     private Accesorio accesorio;
-    private boolean tieneAccesorio;
+    private static boolean tieneAccesorio;
 
     /**
      * Constructor
@@ -17,6 +19,16 @@ public class Vehiculo_Accesorio {
         this.vehiculo = vehiculo;
         this.accesorio = accesorio;
     }
+
+    public static boolean tieneAccesorio(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Seleccionar accesorio(s)? (S/N)");
+        String resp=sc.nextLine();
+        if(resp.equals("S"))
+            tieneAccesorio=true;
+        return true;
+    }
+
 
     /**
      * Obtiene el vehículo.

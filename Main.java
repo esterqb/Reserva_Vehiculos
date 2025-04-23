@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import static Reserva_Vehiculos.Accesorio.seleccionAccesorio;
+import static Reserva_Vehiculos.Usuario_vehiculo.alquilarVehiculo;
+import static Reserva_Vehiculos.Vehiculo_Accesorio.tieneAccesorio;
 
 public class Main {
     /**
@@ -31,8 +33,10 @@ public class Main {
         System.out.println("3. Registrar mantenimiento.");
         System.out.println("4. Asociar mantenimiento al vehículo.");
         System.out.println("5. Registrar usuario.");
-        System.out.println("6. Elegir accesorio.");
-        System.out.println("7. Finalizar el sistema.");
+        System.out.println("6. Alquiler de vehículo.");
+        System.out.println("7. Seleccionar accesorio.");
+        System.out.println("8. Elegir accesorio.");
+        System.out.println("9. Finalizar el sistema.");
 
         try {
             opcion = Integer.parseInt(scanner.nextLine());
@@ -59,8 +63,10 @@ public class Main {
             case 3 -> Mantenimiento.addMantenimiento();
             case 4 -> Mantenimiento.asociarMantenimiento();
             case 5 -> introducirUsuario();
-            case 6 -> seleccionAccesorio();
-            case 7 -> System.out.println("Fin del programa\n\n");
+            case 6 -> alquilarVehiculo();
+            case 7 -> tieneAccesorio();
+            case 8 -> seleccionAccesorio();
+            case 9 -> System.out.println("Fin del programa\n\n");
             default -> System.out.println("Error en la opción\n\n");
         }
     }

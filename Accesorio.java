@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Reserva_Vehiculos.Vehiculo_Accesorio.tieneAccesorio;
+
 /**
  * Tipo Accesorio.
  */
@@ -74,6 +76,9 @@ public class Accesorio {
      * En el caso del GPS, Baca Remolque, solo se puede seleccionar 1, y las sillitas de bebé, 2 como mucho.
      */
     public static void seleccionAccesorio() {
+        if (tieneAccesorio()){
+            seleccionAccesorio();
+        }
 
     }
 

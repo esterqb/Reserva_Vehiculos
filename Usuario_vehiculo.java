@@ -23,6 +23,10 @@ public class Usuario_vehiculo {
         this.fechaEntrega = fechaEntrega;
     }
 
+    public static void alquilarVehiculo(){
+        System.out.println("Alquilando vehiculo (tengo que desarrollarlo -en mantenimiento xd-)");
+    }
+
     /**
      * Obtiene  el usuario.
      *
