@@ -213,6 +213,9 @@ public class Vehiculo {
 
             System.out.println("Introduce el tipo de vehículo (moto o coche)");
             String tipo = sc.nextLine().toLowerCase();
+            if (!tipo.equals("coche") && !tipo.equals("moto")) {
+                throw new IllegalArgumentException("Vehículo inválido. Solo se permite 'coche' o 'moto'.");
+            }
 
             Vehiculo nuevoVehiculo = new Vehiculo(matricula, numeroBastidor, anioMatriculacion, modelo, tipo);
             Vehiculo.catalogo.add(nuevoVehiculo);

@@ -60,22 +60,22 @@ public class Usuario_vehiculo {
                 Vehiculo seleccionado = Vehiculo.catalogo.get(opcion);
                 System.out.println("Has seleccionado: " + seleccionado);
 
-                System.out.print("Introduce el día de recogida: ");
+                System.out.print("Introduce el día de recogida (DD): ");
                 int dia = sc.nextInt();
-                System.out.print("Introduce el mes: ");
+                System.out.print("Introduce el mes (MM): ");
                 int mes = sc.nextInt();
-                System.out.print("Introduce el año: ");
+                System.out.print("Introduce el año (AAAA): ");
                 int anio = sc.nextInt();
                 LocalDate fechaInicio = LocalDate.of(anio, mes, dia);
 
                 LocalDate fechaEntrega = null;
                 boolean fechaValida = false;
                 while (!fechaValida) {
-                    System.out.print("Introduce el día de entrega: ");
+                    System.out.print("Introduce el día de entrega (DD): ");
                     int diaE = sc.nextInt();
-                    System.out.print("Introduce el mes de entrega: ");
+                    System.out.print("Introduce el mes de entrega (MM): ");
                     int mesE = sc.nextInt();
-                    System.out.print("Introduce el año de entrega: ");
+                    System.out.print("Introduce el año de entrega (AAAA): ");
                     int anioE = sc.nextInt();
                     fechaEntrega = LocalDate.of(anioE, mesE, diaE);
 

@@ -72,7 +72,6 @@ public class Accesorio {
     /**
      * Método para seleccionar el o los accesorios que se quieran de la lista de accesorios disponibles.
      * En el caso de la Kawasaki de Salva o la Vespa azulita, no se pueden seleccionar accesorios salvo el casco.
-     * Plantear meter tipo de vehículo: coche o moto para así cubrir eso (if tipo = "moto" no accesorios excepto casco).
      * En el caso del GPS, Baca Remolque, solo se puede seleccionar 1, y las sillitas de bebé, 2 como mucho.
      */
     public static List<Accesorio> seleccionAccesorio(String tipoVehiculo) {
@@ -88,7 +87,7 @@ public class Accesorio {
                     return seleccionados;
                 }
             }
-            System.out.println("No se encotró el accesorio 'Casco'.");
+            System.out.println("No se encontró el accesorio 'Casco'.");
             return seleccionados;
         }
 

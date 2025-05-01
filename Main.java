@@ -32,10 +32,9 @@ public class Main {
         System.out.println("1. Ver catálogo.");
         System.out.println("2. Registrar otro vehiculo.");
         System.out.println("3. Registrar mantenimiento.");
-        System.out.println("4. Asociar mantenimiento al vehículo.");
-        System.out.println("5. Alquiler de vehículo.");
-        System.out.println("6. Mostrar todos los alquileres.");
-        System.out.println("7. Finalizar el sistema.");
+        System.out.println("4. Alquilar vehículo.");
+        System.out.println("5. Mostrar todos los alquileres.");
+        System.out.println("6. Finalizar el sistema.");
 
         try {
             opcion = Integer.parseInt(scanner.nextLine());
@@ -59,11 +58,13 @@ public class Main {
         switch (opcion) {
             case 1 -> Vehiculo.verCatalogo();
             case 2 -> Vehiculo.agregarVehiculo();
-            case 3 -> Mantenimiento.addMantenimiento();
-            case 4 -> Mantenimiento.asociarMantenimiento();
-            case 5 -> alquilarVehiculo();
-            case 6 -> mostrarAlquileres();
-            case 7 -> System.out.println("Fin del programa\n\n");
+            case 3 -> {
+                Mantenimiento.addMantenimiento();
+                Mantenimiento.asociarMantenimiento();
+            }
+            case 4 -> alquilarVehiculo();
+            case 5 -> mostrarAlquileres();
+            case 6 -> System.out.println("Fin del programa\n\n");
             default -> System.out.println("Error en la opción\n\n");
         }
     }
