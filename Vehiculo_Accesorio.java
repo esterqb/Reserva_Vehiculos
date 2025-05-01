@@ -8,25 +8,17 @@ public class Vehiculo_Accesorio {
     private Accesorio accesorio;
     private static boolean tieneAccesorio;
 
-    /**
-     * Constructor
-     * Instancia un nuevo Vehiculo accesorio.
-     *
-     * @param vehiculo  vehiculo
-     * @param accesorio accesorio
-     */
-    public Vehiculo_Accesorio(Vehiculo vehiculo, Accesorio accesorio) {
-        this.vehiculo = vehiculo;
-        this.accesorio = accesorio;
-    }
 
+    /**
+     * Pregunta si quiere seleccionar accesorios. Ignora las diferentes formas de introducir el valor true.
+     *
+     * @return the boolean
+     */
     public static boolean tieneAccesorio(){
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Seleccionar accesorio(s)? (S/N)");
-        String resp=sc.nextLine();
-        if(resp.equals("S"))
-            tieneAccesorio=true;
-        return true;
+        String resp = sc.nextLine().trim().toUpperCase();
+        return resp.equals("s") || resp.equals("si") || resp.equals("S") || resp.equals("SI");
     }
 
 

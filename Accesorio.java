@@ -75,11 +75,95 @@ public class Accesorio {
      * Plantear meter tipo de vehículo: coche o moto para así cubrir eso (if tipo = "moto" no accesorios excepto casco).
      * En el caso del GPS, Baca Remolque, solo se puede seleccionar 1, y las sillitas de bebé, 2 como mucho.
      */
-    public static void seleccionAccesorio() {
-        if (tieneAccesorio()){
-            seleccionAccesorio();
+    public static List<Accesorio> seleccionAccesorio(String tipoVehiculo) {
+        List<Accesorio> seleccionados = new ArrayList<>();
+        Scanner entrada = new Scanner(System.in);
+
+        if (tipoVehiculo.equalsIgnoreCase("moto")) {
+            System.out.println("Para la moto solo se puede seleccionar el casco.");
+            for (Accesorio accesorio : accesoriosDisponibles) {
+                if (accesorio.getNombre().equalsIgnoreCase("Casco")) {
+                    seleccionados.add(accesorio);
+                    System.out.println("Casco seleccionado.");
+                    return seleccionados;
+                }
+            }
+            System.out.println("No se encotró el accesorio 'Casco'.");
+            return seleccionados;
         }
 
+        System.out.println("Accesorios disponibles:");
+        for (Accesorio accesorio : accesoriosDisponibles) {
+            System.out.println(accesorio.getId() + " - " + accesorio.getNombre());
+        }
+
+        boolean seguir = true;
+        int sillitasSeleccionadas = 0;
+        boolean otroAccesorio = false;
+
+        // Nueva validación para el tipo "coche"
+        boolean cocheLimiteAlcanzado = false;
+
+        while (seguir) {
+            if (cocheLimiteAlcanzado) {
+                System.out.println("Has alcanzado el límite de accesorios para este coche. No puedes seleccionar más.");
+                break; // Termina la selección de accesorios si el límite es alcanzado.
+            }
+
+            System.out.print("Introduzca el ID del accesorio deseado (si desea salir introduzca '-1'): ");
+            int opcion = entrada.nextInt();
+
+            if (opcion == -1) {
+                System.out.println("Ha seleccionado la opción de salir sin seleccionar accesorios.");
+                seguir = false;
+            } else {
+                Accesorio accesorioEncontrado = null;
+                for (Accesorio a : accesoriosDisponibles) {
+                    if (a.getId() == opcion) {
+                        accesorioEncontrado = a;
+                        break;
+                    }
+                }
+                if (accesorioEncontrado != null) {
+                    int id = accesorioEncontrado.getId();
+
+                    switch (id) {
+                        case 1:
+                        case 3:
+                        case 4:
+                            if (otroAccesorio) {
+                                System.out.println("Ya has seleccionado GPS, Baca o Remolque y solo puede seleccionar uno de estos.");
+                            } else {
+                                seleccionados.add(accesorioEncontrado);
+                                otroAccesorio = true;
+                                System.out.println(accesorioEncontrado.getNombre() + " añadido correctamente!");
+                            }
+                            break;
+                        case 2:
+                            if (sillitasSeleccionadas < 2) {
+                                seleccionados.add(accesorioEncontrado);
+                                sillitasSeleccionadas++;
+                                System.out.println("Sillita añadida correctamente");
+                            } else {
+                                System.out.println("Ya ha añadido un máximo de 2 sillitas");
+                            }
+                            break;
+                        default:
+                            seleccionados.add(accesorioEncontrado);
+                            System.out.println(accesorioEncontrado.getNombre() + " añadido correctamente:");
+                    }
+
+                    // Si se alcanzan los límites para los coches, se desactiva la opción de seguir seleccionando
+                    if (tipoVehiculo.equalsIgnoreCase("coche") && sillitasSeleccionadas >= 2 && otroAccesorio) {
+                        cocheLimiteAlcanzado = true;
+                    }
+                } else {
+                    System.out.println("ID no válido. Por favor, introduzca un ID válido.");
+                }
+            }
+        }
+
+        return seleccionados;
     }
 
     /*Accesorios predefinidos. Gracias al constructor, ya están registrados en el array list.*/

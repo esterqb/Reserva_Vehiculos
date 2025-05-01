@@ -12,6 +12,7 @@ public class Vehiculo {
     public String numeroBastidor;
     public String anioMatriculacion;
     public String modelo;
+    public String tipo;
     private List<Mantenimiento> mantenimientos = new ArrayList<>();
     private List<Vehiculo_Accesorio> vehiculoAccesorios = new ArrayList<>();
 
@@ -46,12 +47,14 @@ public class Vehiculo {
      * @param numeroBastidor    número bastidor
      * @param anioMatriculacion año matriculación
      * @param modelo            modelo
+     * @param tipo              tipo
      */
-    public Vehiculo(String matricula, String numeroBastidor, String anioMatriculacion, String modelo) {
+    public Vehiculo(String matricula, String numeroBastidor, String anioMatriculacion, String modelo, String tipo) {
         this.matricula = matricula;
         this.numeroBastidor = numeroBastidor;
         this.anioMatriculacion = anioMatriculacion;
         this.modelo = modelo;
+        this.tipo = tipo;
 
         // Añadir un vehículo al catálogo cada vez se cree un nuevo vehículo
         catalogo.add(this);
@@ -59,11 +62,30 @@ public class Vehiculo {
 
     //Vehículos ya en el catálogo.
     static {
-        new Vehiculo("7896SLV", "66600", "2025", "Kawasaki de Salva");
-        new Vehiculo("7639BKL", "23410", "2022", "Vespa azulita");
-        new Vehiculo("7452HOE", "383800", "2025", "Volkswagen Tayron");
-        new Vehiculo("2605RYE", "20180", "2018", "Alfa Romeo");
-        new Vehiculo("9873MLS", "52342", "2023", "Seat Ibiza");
+        new Vehiculo("7896SLV", "66600", "2025", "Kawasaki de Salva", "moto");
+        new Vehiculo("7639BKL", "23410", "2022", "Vespa azulita", "moto");
+        new Vehiculo("7452HOE", "383800", "2025", "Volkswagen Tayron", "coche");
+        new Vehiculo("2605RYE", "20180", "2018", "Alfa Romeo", "coche");
+        new Vehiculo("9873MLS", "52342", "2023", "Seat Ibiza", "coche");
+    }
+
+
+    /**
+     * Obtiene el tipo.
+     *
+     * @return devuelve el tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * Establece el tipo.
+     *
+     * @param tipo tipo
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     /**
@@ -116,7 +138,7 @@ public class Vehiculo {
      *
      * @param anioMatriculacion año de matriculación.
      */
-    public void setAñoMatriculacion(String anioMatriculacion) {
+    public void setAnioMatriculacion(String anioMatriculacion) {
         this.anioMatriculacion = anioMatriculacion;
     }
 
@@ -189,7 +211,10 @@ public class Vehiculo {
             System.out.println("Introducir modelo.");
             String modelo = sc.nextLine();
 
-            Vehiculo nuevoVehiculo = new Vehiculo(matricula, numeroBastidor, anioMatriculacion, modelo);
+            System.out.println("Introduce el tipo de vehículo (moto o coche)");
+            String tipo = sc.nextLine().toLowerCase();
+
+            Vehiculo nuevoVehiculo = new Vehiculo(matricula, numeroBastidor, anioMatriculacion, modelo, tipo);
             Vehiculo.catalogo.add(nuevoVehiculo);
             System.out.println("Vehículo agregado al catálogo correctamente.");
         } catch (IllegalArgumentException e) {
