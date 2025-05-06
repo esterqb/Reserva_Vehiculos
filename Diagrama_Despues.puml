@@ -1,0 +1,119 @@
+@startuml
+
+class Accesorio {
+    -nombre: String
+    -id: int
+    -accesoriosDisponibles: List<Accesorio>
+    +Accesorio(nombre: String, id: int)
+    +getNombre(): String
+    +setNombre(nombre: String): void
+    +getId(): int
+    +setId(id: int): void
+    +getAccesoriosDisponibles(): List<Accesorio>
+    +seleccionAccesorio(): void
+}
+
+class Mantenimiento {
+    -id_Mantenimiento: int
+    -fecha: LocalDate
+    -historial: List<Mantenimiento>
+    +Mantenimiento(id_Mantenimiento: int, fecha: LocalDate)
+    +getId_Mantenimiento(): int
+    +setId_Mantenimiento(id: int): void
+    +getFecha(): LocalDate
+    +setFecha(fecha: LocalDate): void
+    +registrarMantenimiento(id: int, fecha: LocalDate): Mantenimiento
+    +getHistorial(): List<Mantenimiento>
+    +toString(): String
+    +addMantenimiento(): void
+    +asociarMantenimiento(): void
+}
+
+class ReservaException {
+    -mensaje: String
+    -dni: String
+    +ReservaException(mensaje: String, dni: String)
+    +getMessage(): String
+    +getDni(): String
+}
+
+class Usuario {
+    -dni: String
+    -nombre: String
+    -apellido: String
+    -tlfno: int
+    +Usuario(dni: String, nombre: String, apellido: String, tlfno: int)
+    +getDni(): String
+    +setDni(dni: String): void
+    +getNombre(): String
+    +setNombre(nombre: String): void
+    +getApellido(): String
+    +setApellido(apellido: String): void
+    +getTlfno(): int
+    +setTlfno(tlfno: int): void
+    +entrada(dni: String, nombre: String, apellido: String): void
+    +introducirUsuario(): void
+}
+
+class Usuario_vehiculo {
+    -usuario: Usuario
+    -vehiculo: Vehiculo
+    -fechaInicio: LocalDate
+    -fechaEntrega: LocalDate
+    +alquileres: List<Usuario_vehiculo>
+    +Usuario_vehiculo(usuario: Usuario, vehiculo: Vehiculo, fechaInicio: LocalDate, fechaEntrega: LocalDate)
+    +alquilarVehiculo(): void
+    +mostrarAlquileres(): void
+    +getUsuario(): Usuario
+    +setUsuario(usuario: Usuario): void
+    +getVehiculo(): Vehiculo
+    +setVehiculo(vehiculo: Vehiculo): void
+    +getFechaInicio(): LocalDate
+    +setFechaInicio(fecha: LocalDate): void
+    +getFechaEntrega(): LocalDate
+    +setFechaEntrega(fecha: LocalDate): void
+}
+
+class Vehiculo {
+    -matricula: String
+    -numeroBastidor: String
+    -anioMatriculacion: String
+    -modelo: String
+    -mantenimientos: List<Mantenimiento>
+    -vehiculoAccesorios: List<Vehiculo_Accesorio>
+    +Vehiculo(matricula: String, numeroBastidor: String, anio: String, modelo: String)
+    +addVehiculoAccesorio(va: Vehiculo_Accesorio): void
+    +getVehiculoAccesorios(): List<Vehiculo_Accesorio>
+    +getMatricula(): String
+    +setMatricula(matricula: String): void
+    +getNumeroBastidor(): String
+    +setNumeroBastidor(numero: String): void
+    +getAnioMatriculacion(): String
+    +setAnioMatriculacion(anio: String): void
+    +getModelo(): String
+    +setModelo(modelo: String): void
+    +toString(): String
+    +verCatalogo(): void
+    +addMantenimiento(m: Mantenimiento): void
+    +agregarVehiculo(): void
+    +getMantenimientos(): List<Mantenimiento>
+}
+
+class Vehiculo_Accesorio {
+    -vehiculo: Vehiculo
+    -accesorio: Accesorio
+    -tieneAccesorio: boolean
+    +Vehiculo_Accesorio(vehiculo: Vehiculo, accesorio: Accesorio)
+    +getVehiculo(): Vehiculo
+    +setVehiculo(vehiculo: Vehiculo): void
+    +tieneAccesorio(): boolean
+}
+
+Vehiculo "1" o-- "*" Vehiculo_Accesorio
+Accesorio "1" o-- "*" Vehiculo_Accesorio
+Vehiculo "1" o-- "*" Mantenimiento
+Mantenimiento "*" --> "*" Vehiculo : "asociado a"
+Usuario "1" o-- "*" Usuario_vehiculo
+Vehiculo "1" o-- "*" Usuario_vehiculo
+
+@enduml

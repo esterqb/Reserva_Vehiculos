@@ -1,0 +1,103 @@
+@startuml
+
+class Accesorio {
+    -nombre: String
+    -id: int
+    -vehiculoAccesorios: List<Vehiculo_Accesorio>
+    +getNombre(): String
+    +setNombre(nombre: String): void
+    +getId(): int
+    +setId(id: int): void
+    +getVehiculoAccesorios(): List<Vehiculo_Accesorio>
+    +setVehiculoAccesorios(lista: List<Vehiculo_Accesorio>): void
+}
+
+class Mantenimiento {
+    -id_Mantenimiento: int
+    -fecha: Date
+    -vehiculos: List<Vehiculo>
+    +getId_Mantenimiento(): int
+    +setId_Mantenimiento(id: int): void
+    +getFecha(): Date
+    +setFecha(fecha: Date): void
+    +getVehiculos(): List<Vehiculo>
+    +setVehiculos(lista: List<Vehiculo>): void
+}
+
+class Usuario {
+    -dni: String
+    -nombre: String
+    -apellido: String
+    -tlfno: int
+    -usuarioVehiculos: List<Usuario_vehiculo>
+    +getDni(): String
+    +setDni(dni: String): void
+    +getNombre(): String
+    +setNombre(nombre: String): void
+    +getApellido(): String
+    +setApellido(apellido: String): void
+    +getTlfno(): int
+    +setTlfno(tlfno: int): void
+    +getUsuarioVehiculos(): List<Usuario_vehiculo>
+    +setUsuarioVehiculos(lista: List<Usuario_vehiculo>): void
+}
+
+class Usuario_vehiculo {
+    -usuario: Usuario
+    -vehiculo: Vehiculo
+    -fechaInicio: LocalDate
+    -fechaEntrega: LocalDate
+    +Usuario_vehiculo(usuario: Usuario, vehiculo: Vehiculo, fechaInicio: LocalDate, fechaEntrega: LocalDate)
+    +getUsuario(): Usuario
+    +setUsuario(usuario: Usuario): void
+    +getVehiculo(): Vehiculo
+    +setVehiculo(vehiculo: Vehiculo): void
+    +getFechaInicio(): LocalDate
+    +setFechaInicio(fecha: LocalDate): void
+    +getFechaEntrega(): LocalDate
+    +setFechaEntrega(fecha: LocalDate): void
+}
+
+class Vehiculo {
+    -matricula: String
+    -numeroBastidor: String
+    -anioMatriculacion: String
+    -tipo: String
+    -vehiculoAccesorios: List<Vehiculo_Accesorio>
+    -mantenimientos: List<Mantenimiento>
+    +getMatricula(): String
+    +setMatricula(matricula: String): void
+    +getNumeroBastidor(): String
+    +setNumeroBastidor(numero: String): void
+    +getAnioMatriculacion(): String
+    +setAnioMatriculacion(anio: String): void
+    +getTipo(): String
+    +setTipo(tipo: String): void
+    +getVehiculoAccesorios(): List<Vehiculo_Accesorio>
+    +setVehiculoAccesorios(lista: List<Vehiculo_Accesorio>): void
+    +getMantenimientos(): List<Mantenimiento>
+    +setMantenimientos(lista: List<Mantenimiento>): void
+}
+
+class Vehiculo_Accesorio {
+    -vehiculo: Vehiculo
+    -accesorio: Accesorio
+    -tieneAccesorio: boolean
+    +Vehiculo_Accesorio(vehiculo: Vehiculo, accesorio: Accesorio, tieneAccesorio: boolean)
+    +getVehiculo(): Vehiculo
+    +setVehiculo(vehiculo: Vehiculo): void
+    +getAccesorio(): Accesorio
+    +setAccesorio(accesorio: Accesorio): void
+    +isTieneAccesorio(): boolean
+}
+
+Vehiculo "1" o-- "*" Vehiculo_Accesorio
+Accesorio "1" o-- "*" Vehiculo_Accesorio
+
+Vehiculo "1" o-- "*" Mantenimiento
+Mantenimiento "*" --> "*" Vehiculo
+
+Usuario "1" o-- "*" Usuario_vehiculo
+Vehiculo "1" o-- "*" Usuario_vehiculo
+
+@enduml

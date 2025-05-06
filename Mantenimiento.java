@@ -6,6 +6,9 @@ import java.util.List;
 
 import static Reserva_Vehiculos.Main.scanner;
 
+/**
+ * The type Mantenimiento.
+ */
 public class Mantenimiento {
     private int id_Mantenimiento;
     private LocalDate fecha;
@@ -20,6 +23,7 @@ public class Mantenimiento {
     public Mantenimiento(int id_Mantenimiento, LocalDate fecha) {
         this.id_Mantenimiento = id_Mantenimiento;
         this.fecha = fecha;
+        historial.add(this);
     }
 
     /**
